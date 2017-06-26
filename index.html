@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+<table style="width:100%">
+    <tr>
+    <th>Symbol</th>
+    <th>Name</th>
+    <th>Shares</th>
+    <th>Price</th>
+    <th>Total</th>
+  </tr>
+{% for transactionline in transaction %}
+
+<TR>
+   <TD>{{ transactionline.stock }}</TD>
+   <TD>{{ transactionline.stock_name }}</TD>
+   <TD>{{ transactionline.shares }}</TD>
+   <TD>{{ transactionline.price | usd }}</TD>
+   <TD>{{ (transactionline.shares*transactionline.price) | usd }}</TD>
+
+</TR>
+{% endfor %}
+<TR>
+    <TD>CASH</TD>
+    <TD></TD>
+    <TD></TD>
+    <TD></TD>
+    <TD>{{ cash_hand | usd }}</TD>
+</TR>
+<TR>
+    <TD></TD>
+    <TD></TD>
+    <TD></TD>
+    <TD></TD>
+    <TD>{{ sum_cash | usd }}</TD>
+</TR>
+
+</table>
+
+{% endblock %}
